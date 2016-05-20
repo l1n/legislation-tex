@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{legislation}{2016-05-15 UMBC SGA Legislation Template}
+
+\LoadClass{article}
+\RequirePackage{mdframed}
+\RequirePackage{enumitem}
+
+\newcommand{\legislationType}{senate}
+\DeclareOption{legislationType}{
+	\renewcommand{\legislationType}
+
+\newcommand{\@authorname}{}
+\renewcommand{\author}[1]{\renewcommand{\@authorname}{#1}}
+\newcommand{\@legislationNumber}{}
+\newcommand{\@legislativeSession}{}
+\newcommand{\@sponsor}{}
+\newcommand{\legislationNumber}
+
+\newcommand{\legislationHeader}{
+	\begin{mdframed}
+	\centering{\section*{
+		\ifthenelse{\equal{\@legislationType}{joint}}{
+			UMBC SGA Joint Legislation
+		}{
+			\ifthenelse{\equal{\@legislationType}{senate}}{
+				UMBC Senate Legislation
+			}{
+				UMBC Finance Board Legislation
+			}}
+	}}
+	\par
+		\ifthenelse{\equal{\@legislationType}{joint}}{
+			JL\@legislationNumber-\@legislativeSession
+		}{
+			\ifthenelse{\equal{\@legislationType}{senate}}{
+				SL\@legislationNumber-\@legislativeSession
+			}{
+				FBL\@legislationNumber-\@legislativeSession
+			}}
+	\begin{description}[align=right]
+		\item [Author] \@authorname
+		\item [Sponsor] \@sponsor
+		\end{description}
+	\end{mdframed}
+	\centering{\section*{\@title}}
+}
