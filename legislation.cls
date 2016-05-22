@@ -77,7 +77,7 @@
 \newcommand{\legislation}[1]{
 	\legislationHeader
 	\raggedright\begin{linenumbers}
-	\begin{description}[style=sameline]
+	\begin{description}[style=sameline,leftmargin=\parindent]
 #1
 	\end{description}
 	\end{linenumbers}
