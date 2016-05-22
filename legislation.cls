@@ -98,12 +98,12 @@
 		\equal{\@firstWhereas}{}
 	}{
 		\renewcommand{\@firstWhereas}{no}
-		\item [Whereas] #1
-	}{\item [And whereas] #1}
+		\item [Whereas,] #1
+	}{\item [And whereas,] #1}
 }
 \newcommand{\resolved}[1]{
 	\renewcommand{\@firstWhereas}{}
-	\item [Let it be resolved] #1
+	\item [Let it be resolved,] #1
 }
 \newcommand{\legislationFooter}{
 	\ifthenelse
