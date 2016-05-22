@@ -146,7 +146,7 @@ The above piece of legislation has been presented to the Student Goverment Assoc
 \newcommand*{\SignatureAndDate}[1]{%
 	\noindent\begin{tabular}{lll}
 \\\\
-	\makebox[0.6\textwidth]{\hrulefill} & \makebox[0.1\textwidth]{} & \makebox[0.3\textwidth]{\hrulefill}\\
+	\makebox[0.65\textwidth]{\hrulefill} & \makebox[0.05\textwidth]{} & \makebox[0.3\textwidth]{\hrulefill}\\
 #1 && Date
 	\end{tabular}
 }%
