@@ -8,6 +8,11 @@
 \RequirePackage[pagewise]{lineno}
 \RequirePackage{xifthen}
 
+\mdfsetup{
+	leftmargin=-10pt,
+	rightmargin=-10pt
+}
+
 \newcommand{\@legislationType}{senate}
 \DeclareOption{financeBoard}{
 	\renewcommand{\@legislationType}{finance}
@@ -46,7 +51,7 @@
 \ProcessOptions\relax
 
 \newcommand{\legislationHeader}{
-	\begin{mdframed}[leftmargin=-10pt,rightmargin=+10pt]
+	\begin{mdframed}
 	\centering{\section*{
 		\ifthenelse{\equal{\@legislationType}{joint}}{
 			UMBC SGA Joint Legislation
@@ -98,7 +103,7 @@
 \newcommand{\legislationFooter}{
 	\ifthenelse
 	{\isundefined{\@senatorsActed} \AND \isundefined{\@representativesActed}}{}{
-	\begin{mdframed}[leftmargin=-10pt,rightmargin=+10pt]
+	\begin{mdframed}
 	\begin{description}[style=sameline]
 		\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{joint}}{
 			\item [Senators For] \@senatorsFor
@@ -122,6 +127,7 @@
 	\end{description}
 	\end{mdframed}
 The above piece of legislation has been presented to the Student Goverment Association of the University of Maryland, Baltimore County and has received the votes indicated above.
+\\
 	\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{joint}}{
 	\SignatureAndDate{Speaker of the SGA Senate}
 	}{}
@@ -134,10 +140,11 @@ The above piece of legislation has been presented to the Student Goverment Assoc
 	}{}
 }}
 
-% Modified from the work of Peter Grill (https://tex.stackexchange.com/questions/48152/dynamic-signature-date-line)
 \newcommand*{\SignatureAndDate}[1]{%
-	\vspace{.2in}
-	\par\noindent\makebox[3.0in]{\hrulefill} \hfill\makebox[1.5in]{\hrulefill}%
-		\par\noindent\makebox[3.0in][l]{#1}      \hfill\makebox[1.5in][l]{Date}%
+	\noindent\begin{tabular}{lll}
+\\\\
+	\makebox[3.25in]{\hrulefill} & \makebox[0.25in]{} & \makebox[1.5in]{\hrulefill}\\
+#1 && Date
+	\end{tabular}
 }%
 \endinput
