@@ -8,10 +8,13 @@
 \RequirePackage[pagewise]{lineno}
 \RequirePackage{xifthen}
 
+% Fix for top and bottom boxes
 \mdfsetup{
 	leftmargin=-10pt,
 	rightmargin=-10pt
 }
+
+\setlength{\tabcolsep}{0em} % Fix for signature lines
 
 \newcommand{\@legislationType}{senate}
 \DeclareOption{financeBoard}{
@@ -143,7 +146,7 @@ The above piece of legislation has been presented to the Student Goverment Assoc
 \newcommand*{\SignatureAndDate}[1]{%
 	\noindent\begin{tabular}{lll}
 \\\\
-	\makebox[3.25in]{\hrulefill} & \makebox[0.25in]{} & \makebox[1.5in]{\hrulefill}\\
+	\makebox[0.6\textwidth]{\hrulefill} & \makebox[0.1\textwidth]{} & \makebox[0.3\textwidth]{\hrulefill}\\
 #1 && Date
 	\end{tabular}
 }%
