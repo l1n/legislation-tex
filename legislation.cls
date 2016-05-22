@@ -46,7 +46,7 @@
 \ProcessOptions\relax
 
 \newcommand{\legislationHeader}{
-	\begin{mdframed}
+	\begin{mdframed}[leftmargin=-10pt,rightmargin=+10pt]
 	\centering{\section*{
 		\ifthenelse{\equal{\@legislationType}{joint}}{
 			UMBC SGA Joint Legislation
@@ -92,12 +92,13 @@
 	}{\item [And whereas] #1}
 }
 \newcommand{\resolved}[1]{
+	\renewcommand{\@firstWhereas}{}
 	\item [Let it be resolved] #1
 }
 \newcommand{\legislationFooter}{
 	\ifthenelse
 	{\isundefined{\@senatorsActed} \AND \isundefined{\@representativesActed}}{}{
-	\begin{mdframed}
+	\begin{mdframed}[leftmargin=-10pt,rightmargin=+10pt]
 	\begin{description}[style=sameline]
 		\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{joint}}{
 			\item [Senators For] \@senatorsFor
