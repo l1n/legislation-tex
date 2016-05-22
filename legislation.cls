@@ -14,6 +14,8 @@
 	rightmargin=-10pt
 }
 
+\linespread{1.3}
+
 \setlength{\tabcolsep}{0em} % Fix for signature lines
 
 \newcommand{\@legislationType}{senate}
@@ -55,7 +57,7 @@
 
 \newcommand{\legislationHeader}{
 	\begin{mdframed}
-	\centering{\section*{
+	\centering{\large{
 		\ifthenelse{\equal{\@legislationType}{joint}}{
 			UMBC SGA Joint Legislation
 		}{
@@ -129,8 +131,9 @@
 		}{}
 	\end{description}
 	\end{mdframed}
+~\\
 The above piece of legislation has been presented to the Student Goverment Association of the University of Maryland, Baltimore County and has received the votes indicated above.
-\\
+~\\
 	\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{joint}}{
 	\SignatureAndDate{Speaker of the SGA Senate}
 	}{}
