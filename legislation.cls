@@ -121,5 +121,22 @@
 	\end{description}
 	\end{mdframed}
 The above piece of legislation has been presented to the Student Goverment Association of the University of Maryland, Baltimore County and has received the votes indicated above.
+	\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{joint}}{
+	\SignatureAndDate{Speaker of the SGA Senate}
+	}{}
+	\ifthenelse{\equal{\@legislationType}{finance} \OR \equal{\@legislationType}{joint}}{
+	\SignatureAndDate{Chair of the SGA Finance Board}
+	}{}
+	\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{finance} \AND \isundefined{\@supressPresidentialApproval}}{
+	\parI hereby \iftheneelse{\isundefined{\@presidentialApproval}}{approve/veto}{\@presidentialApproval} the above piece of legislation.
+	\SignatureAndDate{President of the SGA}
+	}{}
 }}
+
+% Modified from the work of Peter Grill (https://tex.stackexchange.com/questions/48152/dynamic-signature-date-line)
+\newcommand*{\SignatureAndDate}[1]{%
+	\vspace{.2in}
+	\par\noindent\makebox[3.0in]{\hrulefill} \hfill\makebox[1.5in]{\hrulefill}%
+		\par\noindent\makebox[3.0in][l]{#1}      \hfill\makebox[1.5in][l]{Date}%
+}%
 \endinput
