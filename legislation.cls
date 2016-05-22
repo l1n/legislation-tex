@@ -141,7 +141,8 @@ The above piece of legislation has been presented to the Student Goverment Assoc
 	\SignatureAndDate{Chair of the SGA Finance Board}
 	}{}
 	\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{finance} \AND \isundefined{\@supressPresidentialApproval}}{
-	\parI hereby \iftheneelse{\isundefined{\@presidentialApproval}}{approve/veto}{\@presidentialApproval} the above piece of legislation.
+	~\\
+	I hereby\ifthenelse{\isundefined{\@presidentialApproval}}{ approve/veto}{ \@presidentialApproval} the above piece of legislation.
 	\SignatureAndDate{President of the SGA}
 	}{}
 }}
