@@ -7,6 +7,7 @@
 \RequirePackage{enumitem}
 \RequirePackage[pagewise]{lineno}
 \RequirePackage{xifthen}
+\RequirePackage{etoolbox}
 
 % Fix for top and bottom boxes
 \mdfsetup{
@@ -51,7 +52,8 @@
 	\newcommand{\@representativesActed}{#5}
 }
 
-\newcommand{\@firstWhereas}{}
+\newcounter{whereasCounter}{}
+\newcounter{resolvedCounter}{}
 
 \ProcessOptions\relax
 
@@ -80,30 +82,33 @@
 		\item [Author] \@authorname
 		\item [Sponsor] \@sponsor
 		\item [Introduced] \@introduced
-	\end{description}
+		\end{description}
 	\end{mdframed}
 	\centering{\section*{\@title}}
 }
-\newcommand{\legislation}[1]{
+\newcommand{\legislation}{
 	\legislationHeader
-	\raggedright\begin{linenumbers}
+		\raggedright\begin{linenumbers}
 	\begin{description}[style=sameline,leftmargin=\parindent]
-#1
+	\ifnum\value{whereasCounter}=1\relax\renewcommand*{\do}[1]{\item [Whereas,] ##1}\else
+	\renewcommand*{\do}[1]{
+		\ifnum\value{whereasCounter}=1\relax\item [And whereas,] ##1\else\addtocounter{whereasCounter}{-1}\item [Whereas,] ##1\fi
+	}\fi
+	\dolistloop{\whereasList}
+	\ifnum\value{resolvedCounter}=1\relax\renewcommand*{\do}[1]{\item [Be it resolved,] ##1}\else
+	\renewcommand*{\do}[1]{
+		\ifnum\value{resolvedCounter}=1\relax\item [Finally, be it resolved,] ##1\else\addtocounter{resolvedCounter}{-1}\item [Be it resolved,] ##1\fi
+	}\fi
+	\dolistloop{\resolvedList}
 	\end{description}
 	\end{linenumbers}
 	\legislationFooter
 }
 \newcommand{\whereas}[1]{
-	\ifthenelse{
-		\equal{\@firstWhereas}{}
-	}{
-		\renewcommand{\@firstWhereas}{no}
-		\item [Whereas,] #1
-	}{\item [And whereas,] #1}
+	\stepcounter{whereasCounter}\listadd{\whereasList}{#1}
 }
 \newcommand{\resolved}[1]{
-	\renewcommand{\@firstWhereas}{}
-	\item [Let it be resolved,] #1
+	\stepcounter{resolvedCounter}\listadd{\resolvedList}{#1}
 }
 \newcommand{\legislationFooter}{
 	\ifthenelse
