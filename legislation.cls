@@ -20,7 +20,11 @@
 \setlength{\tabcolsep}{0em} % Fix for signature lines
 
 \newcommand{\@legislationType}{senate}
-\DeclareOption{financeBoard}{
+
+\DeclareOption{senate}{
+	\renewcommand{\@legislationType}{senate}
+}
+\DeclareOption{financeboard}{
 	\renewcommand{\@legislationType}{finance}
 }
 \DeclareOption{joint}{
