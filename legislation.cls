@@ -41,19 +41,29 @@
 \newcommand{\legislativeSession}[1]{\renewcommand{\@legislativeSession}{#1}}
 \newcommand{\sponsor}[1]{\renewcommand{\@sponsor}{#1}}
 \newcommand{\introduced}[1]{\renewcommand{\@introduced}{#1}}
+\newcommand{\@senatorsFor}{}
+\newcommand{\@senatorsOpposing}{}
+\newcommand{\@senatorsAbstaining}{}
+\newcommand{\@senatorsNotPresent}{}
+\newcommand{\@senatorsActed}{}
 \newcommand{\senatorsActed}[5]{
-	\newcommand{\@senatorsFor}{#1}
-	\newcommand{\@senatorsOpposing}{#2}
-	\newcommand{\@senatorsAbstaining}{#3}
-	\newcommand{\@senatorsNotPresent}{#4}
-	\newcommand{\@senatorsActed}{#5}
+	\renewcommand{\@senatorsFor}{#1}
+	\renewcommand{\@senatorsOpposing}{#2}
+	\renewcommand{\@senatorsAbstaining}{#3}
+	\renewcommand{\@senatorsNotPresent}{#4}
+	\renewcommand{\@senatorsActed}{#5}
 }
+\newcommand{\@representativesFor}{}
+\newcommand{\@representativesOpposing}{}
+\newcommand{\@representativesAbstaining}{}
+\newcommand{\@representativesNotPresent}{}
+\newcommand{\@representativesActed}{}
 \newcommand{\representativesActed}[5]{
-	\newcommand{\@representativesFor}{#1}
-	\newcommand{\@representativesOpposing}{#2}
-	\newcommand{\@representativesAbstaining}{#3}
-	\newcommand{\@representativesNotPresent}{#4}
-	\newcommand{\@representativesActed}{#5}
+	\renewcommand{\@representativesFor}{#1}
+	\renewcommand{\@representativesOpposing}{#2}
+	\renewcommand{\@representativesAbstaining}{#3}
+	\renewcommand{\@representativesNotPresent}{#4}
+	\renewcommand{\@representativesActed}{#5}
 }
 
 \newcounter{whereasCounter}{}
@@ -115,8 +125,6 @@
 	\stepcounter{resolvedCounter}\listadd{\resolvedList}{#1}
 }
 \newcommand{\legislationFooter}{
-	\ifthenelse
-	{\isundefined{\@senatorsActed} \AND \isundefined{\@representativesActed}}{}{
 	\begin{mdframed}
 	\begin{description}[style=sameline]
 		\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{joint}}{
@@ -124,7 +132,7 @@
 			\item [Senators Opposing] \@senatorsOpposing
 			\item [Senators Abstaining] \@senatorsAbstaining
 			\item [Senators Not Present] \@senatorsNotPresent
-			\item [Date of \ifthenelse{\@senatorsFor > \@senatorsOpposing}{Passage}{Failure}] \@senatorsActed
+			\item [Date of \ifthenelse{\equal{\@senatorsFor}{}}{Passage / Failure}{\ifthenelse{\@senatorsFor > \@senatorsOpposing}{Passage}{Failure}}] \@senatorsActed
 		}{}
 		\ifthenelse{\equal{\@legislationType}{joint}}{
 			\end{description}
@@ -136,7 +144,7 @@
 			\item [Representatives Opposing] \@representativesOpposing
 			\item [Representatives Abstaining] \@representativesAbstaining
 			\item [Representatives Not Present] \@representativesNotPresent
-			\item [Date of \ifthenelse{\@representativesFor > \@representativesOpposing}{Passage}{Failure}] \@representativesActed
+			\item [Date of \ifthenelse{\equal{\@representativesFor}{}}{Passage / Failure}{\ifthenelse{\@representativesFor > \@representativesOpposing}{Passage}{Failure}}] \@representativesActed
 		}{}
 	\end{description}
 	\end{mdframed}
@@ -154,7 +162,7 @@ The above piece of legislation has been presented to the Student Goverment Assoc
 	I hereby\ifthenelse{\isundefined{\@presidentialApproval}}{ approve/veto}{ \@presidentialApproval} the above piece of legislation.
 	\SignatureAndDate{President of the SGA}
 	}{}
-}}
+}
 
 \newcommand*{\SignatureAndDate}[1]{%
 	\noindent\begin{tabular}{lll}
