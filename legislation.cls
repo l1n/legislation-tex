@@ -30,6 +30,9 @@
 \DeclareOption{joint}{
 	\renewcommand{\@legislationType}{joint}
 }
+\DeclareOption{draft}{
+	\newcommand{\@draftwatermark}{}
+}
 
 \newcommand{\@authorname}{}
 \newcommand{\@legislationNumber}{}
@@ -70,6 +73,11 @@
 \newcounter{resolvedCounter}{}
 
 \ProcessOptions\relax
+
+\ifthenelse{\isundefined{\@draftwatermark}}{}{
+	\RequirePackage{draftwatermark}
+	\SetWatermarkScale{5}
+}
 
 \newcommand{\legislationHeader}{
 	\begin{mdframed}
