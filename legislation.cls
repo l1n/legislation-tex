@@ -3,11 +3,11 @@
 
 \LoadClass{article}
 
+\RequirePackage{etoolbox}
 \RequirePackage{mdframed}
 \RequirePackage{enumitem}
 \RequirePackage[pagewise]{lineno}
 \RequirePackage{xifthen}
-\RequirePackage{etoolbox}
 
 % Fix for top and bottom boxes
 \mdfsetup{
@@ -38,7 +38,7 @@
 \DeclareOption{senate}{
 	\renewcommand{\@legislationType}{senate}
 }
-\DeclareOption{financeboard}{
+\DeclareOption{financeBoard}{
 	\renewcommand{\@legislationType}{finance}
 }
 \DeclareOption{joint}{
@@ -87,6 +87,14 @@
 \newcounter{resolvedCounter}{}
 
 \ProcessOptions\relax
+
+\pdfinfo{
+  /Title (UMBC SGA Legislation)
+  /Creator (Lin DasSarma <lin@umbc.in>)
+  /Author (Generated at umbc.in)
+  /Subject (UMBC SGA Draft Legislation)
+  /Keywords (umbc,sga,legislation)
+}
 
 \ifthenelse{\isundefined{\@draftwatermark}}{}{
 	\RequirePackage{draftwatermark}
