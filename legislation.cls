@@ -19,6 +19,20 @@
 
 \setlength{\tabcolsep}{0em} % Fix for signature lines
 
+\DeclareOption{smallmargin}{
+    \PassOptionsToPackage{margin=1in}{geometry}
+}
+
+\DeclareOption{nomargin}{
+    \newcommand{\@nomargin}{}
+}
+
+\DeclareOption{nogeometry}{
+    \newcommand{\@nogeometrypackage}{}
+}
+
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{geometry}}
+
 \newcommand{\@legislationType}{senate}
 
 \DeclareOption{senate}{
@@ -79,6 +93,14 @@
 	\SetWatermarkScale{5}
 }
 
+\ifthenelse{\isundefined{\@nogeometry}}{
+    \ifthenelse{\isundefined{\@nomargin}}{
+        \RequirePackage[top=0.5in,bottom=1in]{geometry}
+    }{
+        \RequirePackage{geometry}
+    }
+}{}
+
 \newcommand{\legislationHeader}{
 	\begin{mdframed}
 	\centering{\large{
@@ -100,7 +122,7 @@
 			}{
 				FBL\@legislationNumber-\@legislativeSession
 			}}
-	\begin{description}[style=sameline]
+	\begin{description}[style=sameline, noitemsep]
 		\item [Author] \@authorname
 		\item [Sponsor] \@sponsor
 		\item [Introduced] \@introduced
@@ -134,7 +156,7 @@
 }
 \newcommand{\legislationFooter}{
 	\begin{mdframed}
-	\begin{description}[style=sameline]
+	\begin{description}[style=sameline, noitemsep]
 		\ifthenelse{\equal{\@legislationType}{senate} \OR \equal{\@legislationType}{joint}}{
 			\item [Senators For] \@senatorsFor
 			\item [Senators Opposing] \@senatorsOpposing
@@ -145,7 +167,7 @@
 		\ifthenelse{\equal{\@legislationType}{joint}}{
 			\end{description}
 			\hrulefill
-				\begin{description}[style=sameline]
+				\begin{description}[style=sameline, noitemsep]
 		}{}
 		\ifthenelse{\equal{\@legislationType}{finance} \OR \equal{\@legislationType}{joint}}{
 			\item [Representatives For] \@representativesFor
