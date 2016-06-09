@@ -17,7 +17,7 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{legislation}[2016/6/8 UMBC SGA Legislation Template]
+\ProvidesClass{legislation}[2016/06/08 UMBC SGA Legislation Template]
 
 \LoadClass{article}
 
