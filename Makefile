@@ -21,8 +21,8 @@
 LATEX = `which latex`
 PDFLATEX = `which pdflatex`
 
-PDFFILES = legislation.pdf
-DVIFILES = legislation.dvi
+PDFFILES = example.pdf
+DVIFILES = example.dvi
 ALLFILES = $(PDFFILES) $(DVIFILES)
 
 main:	$(PDFFILES)
