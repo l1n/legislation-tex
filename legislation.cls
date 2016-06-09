@@ -169,7 +169,7 @@
 \newcommand{\legislation}{
 	\legislationHeader
     \raggedright\ifthenelse{\isundefined{\@nolineno}}{\begin{linenumbers}}{}
-        \begin{\ifthenelse{\isundefined{\@paragraphnumbers}}{description}{enumerate}}[style=sameline,leftmargin=\parindent]
+    \ifthenelse{\isundefined{\@paragraphnumbers}}{\begin{description}}{\begin{enumerate}[style=sameline,leftmargin=\parindent]}
 	\ifnum\value{whereasCounter}=1\relax\renewcommand*{\do}[1]{\item [Whereas,] ##1}\else
 	\renewcommand*{\do}[1]{
 		\ifnum\value{whereasCounter}=1\relax\item [And whereas,] ##1\else\addtocounter{whereasCounter}{-1}\item [Whereas,] ##1\fi
@@ -180,7 +180,7 @@
 		\ifnum\value{resolvedCounter}=1\relax\item [Finally, be it resolved,] ##1\else\addtocounter{resolvedCounter}{-1}\item [Be it resolved,] ##1\fi
 	}\fi
 	\dolistloop{\resolvedList}
-	\end{\ifthenelse{\isundefined{\@paragraphnumbers}}{description}{enumerate}}
+    \ifthenelse{\isundefined{\@paragraphnumbers}}{\end{description}}{\end{enumerate}}
 	\ifthenelse{\isundefined{\@nolineno}}{\end{linenumbers}}{}
 	\legislationFooter
 }
